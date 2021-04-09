@@ -1,14 +1,17 @@
 const path = require('path');
 const { merge } = require('webpack-merge');
+// const ESLintPlugin = require('eslint-webpack-plugin');
 const common = require('./webpack.common');
-const ESLintPlugin = require('eslint-webpack-plugin');
+
 
 module.exports = merge(common, {
   mode: 'development',
-  plugins: [new ESLintPlugin({
-    exclude:'/node_modules/',
-    extensions: ['js', 'json'],
-  })],
+  // plugins: [
+  //   new ESLintPlugin({
+  //     exclude: '/node_modules/',
+  //     extensions: ['js', 'json'],
+  //   }),
+  // ],
   // 在生产环境和开发环境做不同的配置
   devtool: 'inline-source-map',
   devServer: {
@@ -18,6 +21,6 @@ module.exports = merge(common, {
     //  代理
     proxy: {},
     //  开启HRM
-    // hot: true,
+    hot: true,
   },
 });

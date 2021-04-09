@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack serve --open --config ./config/webpack.dev.js",
+    "start": "webpack serve --open  --config ./config/webpack.dev.js",
     "build": "webpack  --config ./config/webpack.prod.js"
   },
   "repository": {
@@ -19,15 +19,20 @@
   "devDependencies": {
     "@babel/core": "^7.13.14",
     "@babel/plugin-proposal-class-properties": "^7.13.0",
+    "@babel/plugin-transform-react-jsx": "^7.13.12",
     "@babel/plugin-transform-runtime": "^7.13.10",
     "@babel/preset-env": "^7.13.12",
     "@babel/preset-react": "^7.13.13",
+    "babel-eslint": "^10.1.0",
     "babel-loader": "^8.2.2",
     "css-loader": "^5.2.0",
     "eslint": "^7.23.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-prettier": "^8.1.0",
+    "eslint-plugin-compat": "^3.9.0",
     "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.23.1",
     "eslint-webpack-plugin": "^2.5.3",
     "html-webpack-plugin": "^5.3.1",
     "less": "^4.1.1",
@@ -37,6 +42,7 @@
     "postcss-loader": "^5.2.0",
     "postcss-preset-env": "^6.7.0",
     "style-loader": "^2.0.0",
+    "style-resources-loader": "^1.4.1",
     "url-loader": "^4.1.1",
     "webpack": "^5.28.0",
     "webpack-cli": "^4.6.0",

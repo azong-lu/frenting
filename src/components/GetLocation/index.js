@@ -1,18 +1,23 @@
 import { message } from 'antd';
 import React, { useState, useEffect } from 'react';
+import { acquireIp } from 'services/AmapAPI';
+import location from 'asserts/location.png';
+
+import styles from './index.less';
 
 export default function GetLocation() {
-  const [currentLocal, setCurrentLocal] = useState('');
+  const [currentLocal, setCurrentLocal] = useState('全国');
   useEffect(() => {
-    navigator.geolocation.getCurrentPosition(
-      (res) => {
-        // setCurrentLocal(res);
-        console.log(res);
-      },
-      (err) => {
-        message.error(`定位失败，当前设备不支持定位`);
-      }
-    );
+    const key = 'f09c9da07eeed2b4c43f598e8f00d162';
+    acquireIp({ key }).then((res) => {
+      const { city } = res;
+      setCurrentLocal(city);
+    });
   }, [currentLocal]);
-  return <div>{currentLocal}</div>;
+  return (
+    <div className={styles.location}>
+      <span>{currentLocal}</span>
+      <img src={location} alt='location' />
+    </div>
+  );
 }
