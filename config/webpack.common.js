@@ -39,23 +39,32 @@ module.exports = {
         },
       },
       {
+        test:/\.css$/,
+        use:[
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules:true,
+            },
+          }
+        ]
+      },
+      {
         test: /\.less$/,
         exclude: /node_modules/,
         use: [
           {
-            loader: MiniCssExtractPlugin.loader,
-            options: {
-              esModule: true,
-            },
+            loader: 'style-loader'
+            // loader: MiniCssExtractPlugin.loader,
+            // options: {
+            //   esModule: false,
+            // },
           }, // 从 JS 中创建样式节点
           {
             loader: 'css-loader',
             options: {
-              importLoaders: 1,
-              modules: {
-                localIdentName: '[name]__[local]___[hash:base64:5]',
-              },
-              sourceMap: true,
+              modules:true,
             },
           }, // 转化 CSS 为 CommonJS
           {
@@ -68,6 +77,7 @@ module.exports = {
           }, //兼容css
           {
             loader: 'less-loader',
+
           }, // 编译 Less 为 CSS
           {
             loader: 'style-resources-loader',

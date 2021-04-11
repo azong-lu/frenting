@@ -10,7 +10,7 @@ const RouterView = (props) => {
         path={path}
         exact={exact}
         render={(routeProps) => {
-          if (children) {
+          if (children.length) {
             // 存在路由嵌套
            return <item.component {...routeProps} routes={children} />;
           } else {

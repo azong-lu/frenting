@@ -4,6 +4,7 @@ import router from './router/router';
 import RouterView from './router/index';
 import { BrowserRouter, Switch } from 'react-router-dom';
 
+console.log(router);
 class App extends Component {
   render() {
     return (
