@@ -8,9 +8,9 @@ export async function useAmap(params = {}) {
   });
 }
 
-export async function convertGeo(params = {}) {
+export async function acquireDistrict(params = {}) {
     // console.log(params);
-    return await get('https://restapi.amap.com/v3/assistant/coordinate/convert', {
+    return await get('https://restapi.amap.com/v3/config/district', {
       params,
       mode: 'cors',
     });

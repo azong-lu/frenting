@@ -3,7 +3,7 @@ import { Route } from 'react-router-dom';
 
 const RouterView = (props) => {
   return props.routes.map((item) => {
-    const { path,key ,exact =true,children} = item;
+    const { path, key, exact = true, children = [] } = item;
     return (
       <Route
         key={key}
@@ -12,10 +12,10 @@ const RouterView = (props) => {
         render={(routeProps) => {
           if (children.length) {
             // 存在路由嵌套
-           return <item.component {...routeProps} routes={children} />;
+            return <item.component {...routeProps} routes={children} />;
           } else {
             // 不存在路由嵌套
-           return <item.component {...routeProps} />;
+            return <item.component {...routeProps} />;
           }
         }}
       />

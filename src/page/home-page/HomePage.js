@@ -6,10 +6,8 @@ import StatusBar from 'components/status-bar/index'
 import styles from './HomePage.less'
 
 const HomePage = (props) => {
-  console.log(props.history);
   const toCitySelect = () => {
      const {history}=props;
-     console.log(history);
      history.push('/choosecity')
   }
 
@@ -17,7 +15,7 @@ const HomePage = (props) => {
     return (
       <StatusBar>
         <span onClick={toCitySelect}><GetLocation /></span>
-        <UserOutlined style={{ color: '#fff' }} />
+        <UserOutlined />
       </StatusBar>
     )
   };

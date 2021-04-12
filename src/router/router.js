@@ -6,14 +6,12 @@ const router = [
     path: '/',
     key:'HomePage',
     component: HomePage,
-    children:[
-      {
-        path:'/choosecity',
-        component:ChooseCity,
-        key:'ChooseCity'
-      }
-    ]
   },
+  {
+    path:'/choosecity',
+    component:ChooseCity,
+    key:'ChooseCity'
+  }
 ];
 
 export default router;
