@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { connect } from 'dva';
+// import { connect } from 'dva';
 import { acquireIp } from 'services/AmapAPI';
 import location from 'asserts/location.png';
 
@@ -28,6 +28,6 @@ const GetLocation = (props) => {
   );
 };
 
-const mapStateToDispatch = ({ location }) => ({ ...location });
+// const mapStateToDispatch = ({ location }) => ({ ...location });
 
-export default connect(mapStateToDispatch)(GetLocation);
+export default GetLocation;

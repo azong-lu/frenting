@@ -29,7 +29,7 @@ module.exports = {
           loader: 'babel-loader?cacheDirectory=true',
           options: {
             // es语法分析包
-            presets: ['@babel/preset-react', '@babel/preset-env'],
+            presets: ['@babel/preset-react', '@babel/preset-env',],
             // 转化promise等为浏览器可兼容代码
             plugins: [
               '@babel/plugin-transform-runtime',
@@ -39,23 +39,23 @@ module.exports = {
         },
       },
       {
-        test:/\.css$/,
-        use:[
+        test: /\.css$/,
+        use: [
           'style-loader',
           {
             loader: 'css-loader',
             options: {
-              modules:true,
+              modules: true,
             },
-          }
-        ]
+          },
+        ],
       },
       {
         test: /\.less$/,
         exclude: /node_modules/,
         use: [
           {
-            loader: 'style-loader'
+            loader: 'style-loader',
             // loader: MiniCssExtractPlugin.loader,
             // options: {
             //   esModule: false,
@@ -64,7 +64,7 @@ module.exports = {
           {
             loader: 'css-loader',
             options: {
-              modules:true,
+              modules: true,
             },
           }, // 转化 CSS 为 CommonJS
           {
@@ -74,10 +74,10 @@ module.exports = {
                 plugins: [['postcss-preset-env', {}]],
               },
             },
-          }, //兼容css
+          },
+          // 兼容css
           {
             loader: 'less-loader',
-
           }, // 编译 Less 为 CSS
           {
             loader: 'style-resources-loader',

@@ -1,0 +1,58 @@
+.bannerTotal {
+    position: relative;
+
+    .bannerItem {
+        width: 100%;
+        height: auto;
+        border-radius: 0 0 50% 50%/0 0 20% 20%;
+    }
+
+    .bannerInput {
+        position: absolute;
+        top: 63%;
+        left: 50%;
+        font-size: 0.7rem;
+        width: 12rem;
+        background: #fff;
+        color: #999;
+        transform: translateX(-50%);
+        border-radius: 5px;
+        padding: 0.3rem 0;
+        text-align: center;
+    }
+}
+
+.rentTypeContent {
+    padding: 0 1rem;
+    transform: translateY(-45px);
+
+    .innerContent {
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        flex-direction: row;
+        padding: 1rem 0;
+        background: #fff;
+
+    }
+
+    .rentContentItem {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+
+        .rentContentIcon {
+            width: 2.5rem;
+            height: auto;
+            background: @primary-color;
+            border-radius: 50%;
+        }
+
+        span {
+            margin-top: 5px;
+            font-size: 0.7rem;
+            font-weight: bold;
+        }
+    }
+}
