@@ -1,4 +1,4 @@
 # frenting
-#npm install
-#npm run start
-#npm run build
+# npm install
+# npm run start
+# npm run build
