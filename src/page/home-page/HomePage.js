@@ -4,11 +4,34 @@ import GetLocation from 'components/get-location/index';
 import banner1 from 'asserts/banner.png';
 import jointrent from 'asserts/jointrent.png';
 import brandapartment from 'asserts/brandapartment.png';
+import pic1 from 'asserts/pic1.png';
+import pic2 from 'asserts/pic2.png';
+import pic3 from 'asserts/pic3.png';
+import pic4 from 'asserts/pic4.png';
 import shortrent from 'asserts/shortrental.png';
 import entiretenancy from 'asserts/entiretenancy.png';
 import StatusBar from 'components/status-bar/index';
+import { Col, Row } from 'antd';
 
 import styles from './HomePage.less';
+
+
+const houseTypeList = [
+  {
+    key: '',
+    pic: pic1
+  },
+  {
+    key: '',
+    pic: pic2
+  }, {
+    key: '',
+    pic: pic3
+  }, {
+    key: '',
+    pic: pic4
+  },
+]
 
 const rentTypeList = [
   {
@@ -39,6 +62,16 @@ const HomePage = (props) => {
     history.push('/choosecity');
   };
 
+  const renderHouseType = () => (
+    <Row>
+      {
+        houseTypeList.map(item => {
+          const { pic } = item
+          return <img src={pic} className={styles.houseItem} />
+        })}
+    </Row>
+  )
+
   const renderRentType = () => (
     <div className={styles.rentTypeContent}>
       <div className={styles.innerContent}>
@@ -66,7 +99,7 @@ const HomePage = (props) => {
     );
   };
   return (
-    <div>
+    <div className={styles.homepage}>
       <div>{renderStatusBar()}</div>
       <div className={styles.bannerTotal}>
         <img src={banner1} className={styles.bannerItem} alt='banner' />
@@ -76,6 +109,7 @@ const HomePage = (props) => {
         </div>
       </div>
       {renderRentType()}
+      {renderHouseType()}
     </div>
   );
 };
