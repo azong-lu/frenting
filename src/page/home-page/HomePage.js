@@ -1,13 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { SearchOutlined, UserOutlined } from '@ant-design/icons';
 import GetLocation from 'components/get-location/index';
 import banner1 from 'asserts/banner.png';
 import jointrent from 'asserts/jointrent.png';
 import brandapartment from 'asserts/brandapartment.png';
-import pic1 from 'asserts/pic1.png';
-import pic2 from 'asserts/pic2.png';
-import pic3 from 'asserts/pic3.png';
-import pic4 from 'asserts/pic4.png';
 import shortrent from 'asserts/shortrental.png';
 import entiretenancy from 'asserts/entiretenancy.png';
 import StatusBar from 'components/status-bar/index';
@@ -15,23 +11,24 @@ import { Col, Row } from 'antd';
 
 import styles from './HomePage.less';
 
-
 const houseTypeList = [
   {
-    key: '',
-    pic: pic1
+    key: 'guessLike',
+    value: '猜你喜欢',
   },
   {
-    key: '',
-    pic: pic2
-  }, {
-    key: '',
-    pic: pic3
-  }, {
-    key: '',
-    pic: pic4
+    key: 'straightRent',
+    value: '业主直租',
   },
-]
+  {
+    key: 'professionBroker',
+    value: '职业经纪',
+  },
+  {
+    key: 'convenienceAgent',
+    value: '省心中介',
+  },
+];
 
 const rentTypeList = [
   {
@@ -57,20 +54,32 @@ const rentTypeList = [
 ];
 
 const HomePage = (props) => {
+  const [activityIndex, setActivityIndex] = useState(0);
   const toCitySelect = () => {
     const { history } = props;
     history.push('/choosecity');
   };
 
-  const renderHouseType = () => (
-    <Row>
-      {
-        houseTypeList.map(item => {
-          const { pic } = item
-          return <img src={pic} className={styles.houseItem} />
-        })}
-    </Row>
-  )
+  const handleClick = (index) => {
+    setActivityIndex(index);
+  };
+
+  const renderHouseList = () => (
+    <div className={styles.houseTotal}>
+      {houseTypeList.map((item,index) => {
+        const { value, key } = item;
+        return (
+          <span
+            key={key}
+            onClick={()=>handleClick(index)}
+            className={activityIndex === index ? styles.active : ''}
+          >
+            {value}
+          </span>
+        );
+      })}
+    </div>
+  );
 
   const renderRentType = () => (
     <div className={styles.rentTypeContent}>
@@ -109,7 +118,7 @@ const HomePage = (props) => {
         </div>
       </div>
       {renderRentType()}
-      {renderHouseType()}
+      {renderHouseList()}
     </div>
   );
 };
