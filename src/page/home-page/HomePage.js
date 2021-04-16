@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { SearchOutlined, UserOutlined } from '@ant-design/icons';
 import GetLocation from 'components/get-location/index';
 import banner1 from 'asserts/banner.png';
@@ -7,7 +7,7 @@ import brandapartment from 'asserts/brandapartment.png';
 import shortrent from 'asserts/shortrental.png';
 import entiretenancy from 'asserts/entiretenancy.png';
 import StatusBar from 'components/status-bar/index';
-import { Col, Row } from 'antd';
+import { fetchList } from 'services/homepage';
 
 import styles from './HomePage.less';
 
@@ -55,6 +55,11 @@ const rentTypeList = [
 
 const HomePage = (props) => {
   const [activityIndex, setActivityIndex] = useState(0);
+  useEffect(() => {
+    fetchList().then((res) => {
+      console.log(res);
+    });
+  }, []);
   const toCitySelect = () => {
     const { history } = props;
     history.push('/choosecity');
@@ -66,12 +71,12 @@ const HomePage = (props) => {
 
   const renderHouseList = () => (
     <div className={styles.houseTotal}>
-      {houseTypeList.map((item,index) => {
+      {houseTypeList.map((item, index) => {
         const { value, key } = item;
         return (
           <span
             key={key}
-            onClick={()=>handleClick(index)}
+            onClick={() => handleClick(index)}
             className={activityIndex === index ? styles.active : ''}
           >
             {value}
