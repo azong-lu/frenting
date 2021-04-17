@@ -1,8 +1,8 @@
-import Mock from 'mockjs';
+// import Mock from 'mockjs';
 
 const List = [
   {
-    'id|1-100': 100,
+    id:Math.ceil(Math.random()*100),
     area_direction: '18M² | 朝南',
     floor: '4/6',
     house_src_type: 'straightRent',
@@ -26,7 +26,7 @@ const List = [
     subdistrict_name: '当代高邸（聚丰园路95弄）',
   },
   {
-    'id|1-100': 100,
+    id: Math.ceil(Math.random()*100),
     area_direction: '19M² | 朝东南',
     floor: '4/6',
     house_src_type: 'professionBroker',
@@ -50,7 +50,7 @@ const List = [
     subdistrict_name: '美罗家园罗安苑',
   },
   {
-    'id|1-100': 100,
+    id: Math.ceil(Math.random()*100),
     area_direction: '20M² | 朝西南',
     floor: '4/6',
     house_src_type: 'convenienceAgent',
@@ -77,13 +77,24 @@ const List = [
 
 const newList = [];
 
-for (let i = 0; 1 < 10; i++) {
+for (let i = 0; i < 5; i++) {
   newList.push(...List);
 }
 
-Mock.mock('/product/list', {
-  data: {
-    totalCount: 15,
-    modelList:newList,
+// Mock.mock('/product/list', {
+//   data: {
+//     totalCount: 15,
+//     modelList: newList,
+//   },
+// });
+
+const proxy = {
+  'GET /product/list': {
+    data: {
+      totalCount: 15,
+      modelList: newList,
+    },
   },
-});
+};
+
+module.exports = proxy;

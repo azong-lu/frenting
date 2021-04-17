@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { SearchOutlined, UserOutlined } from '@ant-design/icons';
 import GetLocation from 'components/get-location/index';
+import StatusBar from 'components/status-bar/index';
+import ProductComponent from 'components/productcomponent';
+import uid from 'utils/Uid';
+
 import banner1 from 'asserts/banner.png';
 import jointrent from 'asserts/jointrent.png';
 import brandapartment from 'asserts/brandapartment.png';
 import shortrent from 'asserts/shortrental.png';
 import entiretenancy from 'asserts/entiretenancy.png';
-import StatusBar from 'components/status-bar/index';
+
 import { fetchList } from 'services/homepage';
 
 import styles from './HomePage.less';
@@ -55,10 +59,17 @@ const rentTypeList = [
 
 const HomePage = (props) => {
   const [activityIndex, setActivityIndex] = useState(0);
+  const [productList, setProductList] = useState([]);
   useEffect(() => {
     fetchList().then((res) => {
-      console.log(res);
+      const { data: { modelList = [] } = {} } = res;
+      modelList.forEach((item) => {
+        item.uid = uid();
+      });
+      console.log(modelList);
+      setProductList(modelList);
     });
+
   }, []);
   const toCitySelect = () => {
     const { history } = props;
@@ -124,6 +135,7 @@ const HomePage = (props) => {
       </div>
       {renderRentType()}
       {renderHouseList()}
+      <ProductComponent products={productList} />
     </div>
   );
 };
