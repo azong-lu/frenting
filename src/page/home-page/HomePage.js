@@ -76,8 +76,17 @@ const HomePage = (props) => {
     history.push('/choosecity');
   };
 
-  const handleClick = (index) => {
+  const handleClick = (index,key) => {
     setActivityIndex(index);
+    // if(key!=='guessLike'){
+    //   productList.map(item=>{
+    //     const {house_src_type}=item
+    //     if(house_src_type===key){
+  
+    //     }
+    //   })
+    // }
+ 
   };
 
   const renderHouseList = () => (
@@ -87,7 +96,7 @@ const HomePage = (props) => {
         return (
           <span
             key={key}
-            onClick={() => handleClick(index)}
+            onClick={() => handleClick(index,key)}
             className={activityIndex === index ? styles.active : ''}
           >
             {value}

@@ -32,7 +32,7 @@ const ProductComponent = (props) => {
                   <span key={index}>{item}</span>
                 ))}
               </div>
-              <div className={styles.productMoney}>{month_rent}</div>
+              <div className={styles.productMoney}>{`${month_rent}元`}</div>
             </div>
           </div>
         );
