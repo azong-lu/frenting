@@ -60,6 +60,7 @@ const rentTypeList = [
 const HomePage = (props) => {
   const [activityIndex, setActivityIndex] = useState(0);
   const [productList, setProductList] = useState([]);
+  const [products, setProducts] = useState([]);
   useEffect(() => {
     fetchList().then((res) => {
       const { data: { modelList = [] } = {} } = res;
@@ -68,6 +69,7 @@ const HomePage = (props) => {
       });
       console.log(modelList);
       setProductList(modelList);
+      setProducts(modelList)
     });
 
   }, []);
@@ -76,17 +78,15 @@ const HomePage = (props) => {
     history.push('/choosecity');
   };
 
-  const handleClick = (index,key) => {
+  const handleClick = (index, key) => {
     setActivityIndex(index);
-    // if(key!=='guessLike'){
-    //   productList.map(item=>{
-    //     const {house_src_type}=item
-    //     if(house_src_type===key){
-  
-    //     }
-    //   })
-    // }
- 
+    if (key !== 'guessLike') {
+      const newArr = productList.filter(item => item.house_src_type === key)
+      setProducts(newArr)
+    }else{
+      setProducts(productList)
+    }
+
   };
 
   const renderHouseList = () => (
@@ -96,7 +96,7 @@ const HomePage = (props) => {
         return (
           <span
             key={key}
-            onClick={() => handleClick(index,key)}
+            onClick={() => handleClick(index, key)}
             className={activityIndex === index ? styles.active : ''}
           >
             {value}
@@ -144,7 +144,7 @@ const HomePage = (props) => {
       </div>
       {renderRentType()}
       {renderHouseList()}
-      <ProductComponent products={productList} />
+      <ProductComponent products={products} />
     </div>
   );
 };
