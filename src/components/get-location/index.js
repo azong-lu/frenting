@@ -1,25 +1,21 @@
 import React, { useState, useEffect } from 'react';
-// import { connect } from 'dva';
+import { observer } from 'mobx-react-lite';
 import { acquireIp } from 'services/AmapAPI';
 import location from 'asserts/location.png';
+import { useStore } from 'store/store';
 
 import styles from './index.less';
 
 const GetLocation = (props) => {
-  // const { dispatch } = props;
-  const [currentLocal, setCurrentLocal] = useState('全国');
+  const { newLocation, currentLocal} = useStore();
   useEffect(() => {
     const key = 'f09c9da07eeed2b4c43f598e8f00d162';
     acquireIp({ key }).then((res) => {
       const { city } = res;
-      setCurrentLocal(city);
-      // dispatch({
-      //   type: 'location/saveLoaction',
-      //   payload: city,
-      // });
+      newLocation(city);
     });
-  }, [currentLocal]);
-  
+  }, []);
+
   return (
     <div className={styles.location}>
       <span>{currentLocal}</span>
@@ -28,6 +24,5 @@ const GetLocation = (props) => {
   );
 };
 
-// const mapStateToDispatch = ({ location }) => ({ ...location });
 
-export default GetLocation;
+export default observer(GetLocation);

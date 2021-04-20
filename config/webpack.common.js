@@ -16,6 +16,7 @@ module.exports = {
       utils: path.join(__dirname, '../src/utils'),
       services: path.join(__dirname, '../src/services'),
       asserts: path.join(__dirname, '../src/asserts'),
+      store:path.join(__dirname, '../src/store')
     },
     extensions: ['.js', '.jsx'],
   },

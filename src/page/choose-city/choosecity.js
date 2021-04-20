@@ -8,9 +8,8 @@ const ChooseCity = (props) => {
   const [cityList, setCityList] = useState([]);
   useEffect(() => {
     const key = 'f09c9da07eeed2b4c43f598e8f00d162';
-    acquireDistrict({ key }).then((res) => {
-      console.log(res);
-    });
+    // acquireDistrict({ key }).then((res) => {
+    // });
   }, [setCityList]);
   const handleBack = () => {
     const { history } = props;
