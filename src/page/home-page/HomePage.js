@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { SearchOutlined, UserOutlined } from '@ant-design/icons';
 import GetLocation from 'components/get-location/index';
 import StatusBar from 'components/status-bar/index';
@@ -61,13 +61,13 @@ const HomePage = (props) => {
   const [activityIndex, setActivityIndex] = useState(0);
   const [productList, setProductList] = useState([]);
   const [products, setProducts] = useState([]);
+  const productRef = useRef()
   useEffect(() => {
     fetchList().then((res) => {
       const { data: { modelList = [] } = {} } = res;
       modelList.forEach((item) => {
         item.uid = uid();
       });
-      console.log(modelList);
       setProductList(modelList);
       setProducts(modelList)
     });
@@ -79,11 +79,15 @@ const HomePage = (props) => {
   };
 
   const handleClick = (index, key) => {
+    console.log(productRef);
+    // let scrollTop = productRef.scrollBar.scrollTop;  //滚动条滚动高度
+    // let scrollHeight = productRef.scrollBar.scrollHeight;
+    console.log(scrollTop, scrollHeight);
     setActivityIndex(index);
     if (key !== 'guessLike') {
       const newArr = productList.filter(item => item.house_src_type === key)
       setProducts(newArr)
-    }else{
+    } else {
       setProducts(productList)
     }
 
@@ -144,7 +148,11 @@ const HomePage = (props) => {
       </div>
       {renderRentType()}
       {renderHouseList()}
-      <ProductComponent products={products} />
+      <div className={styles.products}>
+        <ProductComponent
+          products={products}
+          ref={productRef} />
+      </div>
     </div>
   );
 };

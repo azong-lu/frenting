@@ -7,13 +7,16 @@ import { useStore } from 'store/store';
 import styles from './index.less';
 
 const GetLocation = (props) => {
-  const { newLocation, currentLocal} = useStore();
+  const { newLocation, currentLocal } = useStore();
   useEffect(() => {
     const key = 'f09c9da07eeed2b4c43f598e8f00d162';
-    acquireIp({ key }).then((res) => {
-      const { city } = res;
-      newLocation(city);
-    });
+    if (currentLocal === '全国') {
+      acquireIp({ key }).then((res) => {
+        const { city } = res;
+        newLocation(city);
+      });
+    }
+
   }, []);
 
   return (
