@@ -67,7 +67,6 @@ const HomePage = (props) => {
       modelList.forEach((item) => {
         item.uid = uid();
       });
-      console.log(modelList);
       setProductList(modelList);
       setProducts(modelList)
     });
