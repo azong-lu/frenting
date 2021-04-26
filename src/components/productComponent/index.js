@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 
 import styles from './index.less';
 
 const ProductComponent = (props) => {
   const { products = [] } = props;
   return (
+    <div className={styles.productTotal}>
     <div className={styles.productContent}>
       {products.map((productItem) => {
         const {
@@ -38,7 +39,8 @@ const ProductComponent = (props) => {
         );
       })}
     </div>
+    </div>
   );
 };
 
-export default ProductComponent;
+export default forwardRef(ProductComponent);
