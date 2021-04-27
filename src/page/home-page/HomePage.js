@@ -61,7 +61,7 @@ const HomePage = (props) => {
   const [activityIndex, setActivityIndex] = useState(0);
   const [productList, setProductList] = useState([]);
   const [products, setProducts] = useState([]);
-  const productRef = useRef()
+  const productRef = useRef(null);
   useEffect(() => {
     fetchList().then((res) => {
       const { data: { modelList = [] } = {} } = res;
@@ -69,9 +69,8 @@ const HomePage = (props) => {
         item.uid = uid();
       });
       setProductList(modelList);
-      setProducts(modelList)
+      setProducts(modelList);
     });
-
   }, []);
   const toCitySelect = () => {
     const { history } = props;
@@ -80,17 +79,17 @@ const HomePage = (props) => {
 
   const handleClick = (index, key) => {
     console.log(productRef);
+    productRef.current.resetScroll();
     // let scrollTop = productRef.scrollBar.scrollTop;  //滚动条滚动高度
     // let scrollHeight = productRef.scrollBar.scrollHeight;
-    console.log(scrollTop, scrollHeight);
+    // console.log(scrollTop, scrollHeight);
     setActivityIndex(index);
     if (key !== 'guessLike') {
-      const newArr = productList.filter(item => item.house_src_type === key)
-      setProducts(newArr)
+      const newArr = productList.filter((item) => item.house_src_type === key);
+      setProducts(newArr);
     } else {
-      setProducts(productList)
+      setProducts(productList);
     }
-
   };
 
   const renderHouseList = () => (
@@ -149,9 +148,7 @@ const HomePage = (props) => {
       {renderRentType()}
       {renderHouseList()}
       <div className={styles.products}>
-        <ProductComponent
-          products={products}
-          ref={productRef} />
+        <ProductComponent products={products} ref={productRef} />
       </div>
     </div>
   );
