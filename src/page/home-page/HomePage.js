@@ -62,6 +62,7 @@ const HomePage = (props) => {
   const [productList, setProductList] = useState([]);
   const [products, setProducts] = useState([]);
   const productRef = useRef(null);
+
   useEffect(() => {
     fetchList().then((res) => {
       const { data: { modelList = [] } = {} } = res;
@@ -72,17 +73,21 @@ const HomePage = (props) => {
       setProducts(modelList);
     });
   }, []);
+
+
   const toCitySelect = () => {
     const { history } = props;
     history.push('/choosecity');
   };
 
+  const toMy=()=>{
+    const {history}=props;
+    history.push('/my')
+  }
+
   const handleClick = (index, key) => {
     console.log(productRef);
     productRef.current.resetScroll();
-    // let scrollTop = productRef.scrollBar.scrollTop;  //滚动条滚动高度
-    // let scrollHeight = productRef.scrollBar.scrollHeight;
-    // console.log(scrollTop, scrollHeight);
     setActivityIndex(index);
     if (key !== 'guessLike') {
       const newArr = productList.filter((item) => item.house_src_type === key);
@@ -131,7 +136,7 @@ const HomePage = (props) => {
         <span onClick={toCitySelect}>
           <GetLocation />
         </span>
-        <UserOutlined />
+        <UserOutlined onClick={toMy}/>
       </StatusBar>
     );
   };

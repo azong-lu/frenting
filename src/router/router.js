@@ -1,5 +1,6 @@
 import HomePage from '@/page/home-page/HomePage';
 import ChooseCity from "@/page/choose-city/choosecity"
+import My from "@/page/my/My"
 
 const router = [
   {
@@ -11,6 +12,11 @@ const router = [
     path:'/choosecity',
     component:ChooseCity,
     key:'ChooseCity'
+  },
+  {
+    path:'/my',
+    component:My,
+    key:'My'
   }
 ];
 

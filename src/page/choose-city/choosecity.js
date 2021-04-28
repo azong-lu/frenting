@@ -3,31 +3,30 @@ import { LeftOutlined } from '@ant-design/icons';
 import StatusBar from 'components/status-bar/index';
 import { observer } from 'mobx-react-lite';
 import { useStore } from 'store/store';
-import cityData from 'utils/cityData'
+import cityData from 'utils/cityData';
 import styles from './choosecity.less';
 import { Input } from 'antd';
 
 const ChooseCity = (props) => {
   const [cityList, setCityList] = useState([]);
   const [newList, setNewList] = useState([]);
-  const { currentLocal, newLocation } = useStore()
+  const { currentLocal, newLocation } = useStore();
   useEffect(() => {
-    let newArr = []
-    cityData.forEach(item => {
-      const { citys } = item
-      newArr.push(...citys)
-    })
+    let newArr = [];
+    cityData.forEach((item) => {
+      const { citys } = item;
+      newArr.push(...citys);
+    });
     newArr = newArr.sort((item1, item2) => {
-      return item1.citysName.localeCompare(item2.citysName)
-    })
-    setCityList(newArr)
-    setNewList(newArr)
+      return item1.citysName.localeCompare(item2.citysName);
+    });
+    setCityList(newArr);
+    setNewList(newArr);
   }, []);
   useEffect(() => {
     const key = 'f09c9da07eeed2b4c43f598e8f00d162';
     // acquireDistrict({ key }).then((res) => {
     // });
-
   }, []);
 
   const handleBack = () => {
@@ -36,17 +35,17 @@ const ChooseCity = (props) => {
   };
 
   const handleSearch = (e) => {
-    const value = e.target.defaultValue
-    const newArr = cityList.filter(item =>
-      item.citysName.indexOf(value) > -1
-    )
-    setNewList(newArr)
-  }
+    const value = e.target.defaultValue;
+    const newArr = cityList.filter(
+      (item) => item.citysName.indexOf(value) > -1
+    );
+    setNewList(newArr);
+  };
 
   const handleCityChoose = (city) => {
-    newLocation(city)
-    handleBack()
-  }
+    newLocation(city);
+    handleBack();
+  };
 
   const renderStatusBar = () => {
     return (
@@ -60,30 +59,34 @@ const ChooseCity = (props) => {
   const renderCity = () => {
     return (
       <div>
-        {newList.map(item => {
-          return <div
-            key={item.citysName}
-            className={styles.cityItem}
-            onClick={() => handleCityChoose(item.citysName)}>
-            {item.citysName}
-          </div>
+        {newList.map((item) => {
+          return (
+            <div
+              key={item.citysName}
+              className={styles.cityItem}
+              onClick={() => handleCityChoose(item.citysName)}
+            >
+              {item.citysName}
+            </div>
+          );
         })}
       </div>
-    )
-  }
-
-
+    );
+  };
 
   return (
     <div>
       <div>{renderStatusBar()}</div>
-      <Input placeholder='搜索热门城市' onPressEnter={handleSearch} />
+      <Input
+        placeholder='搜索热门城市'
+        onPressEnter={handleSearch}
+        className={styles.searchInput}
+      />
       <div>
         <div className={styles.localTitle}>当前城市</div>
         <div className={styles.currentLocal}>{currentLocal}</div>
       </div>
       {renderCity()}
-
     </div>
   );
 };
