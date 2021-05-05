@@ -3,7 +3,7 @@ import { LeftOutlined } from '@ant-design/icons';
 import StatusBar from 'components/status-bar/index';
 import { observer } from 'mobx-react-lite';
 import { useStore } from 'store/store';
-import cityData from 'utils/cityData';
+import cityData from 'utils/city';
 import styles from './choosecity.less';
 import { Input } from 'antd';
 
@@ -11,17 +11,19 @@ const ChooseCity = (props) => {
   const [cityList, setCityList] = useState([]);
   const [newList, setNewList] = useState([]);
   const { currentLocal, newLocation } = useStore();
+  const [nameList, setNameList] = useStore({});
   useEffect(() => {
-    let newArr = [];
+    const newArr = [];
+    const nameList = {};
     cityData.forEach((item) => {
-      const { citys } = item;
-      newArr.push(...citys);
-    });
-    newArr = newArr.sort((item1, item2) => {
-      return item1.citysName.localeCompare(item2.citysName);
+      const { cities, name } = item;
+      newArr.push(...cities);
+      const newName = name.slice(0, 1);
+      nameList[newName] = newName;
     });
     setCityList(newArr);
     setNewList(newArr);
+    setNameList(nameList);
   }, []);
   useEffect(() => {
     const key = 'f09c9da07eeed2b4c43f598e8f00d162';

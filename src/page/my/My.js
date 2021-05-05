@@ -19,7 +19,7 @@ const My = (props) => {
     return (
       <StatusBar>
         <LeftOutlined className={styles.barIcon} onClick={goBack} />
-        <span className={styles.barTitle}>我的</span>
+        <span className={styles.barTitle}>个人中心</span>
       </StatusBar>
     );
   };

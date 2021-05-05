@@ -11,6 +11,7 @@ const GetLocation = (props) => {
   useEffect(() => {
     const key = 'f09c9da07eeed2b4c43f598e8f00d162';
     if (currentLocal === '全国') {
+      // 调取高德地图API，获得当前位置
       acquireIp({ key }).then((res) => {
         const { city } = res;
         newLocation(city);
