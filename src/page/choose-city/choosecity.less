@@ -9,34 +9,58 @@
   transform: translate(-50%, -50%);
 }
 
-.localTitle {
-  color: #bbb;
-  font-size: 0.7rem;
-  margin: 0.2rem;
-}
-
 .currentLocal {
-  background: #ccc;
-  margin: 0.5rem;
-  border-radius: 5px;
-  width: fit-content;
-  font-size: 0.8rem;
-  padding: 0.2rem;
+  background: #fff;
+  width: calc(100% - 1rem);
+  padding: 0.5rem;
+  font-size: 0.6rem;
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  .localTitle {
+    color: #bbb;
+    margin-left: 0.5rem;
+  }
 }
 
-.cityItem {
-  font-size: 0.7rem;
-  margin: 0.2rem;
-  margin-left: 0.4rem;
+.cityScroll {
+  height: calc(100vh - 7rem);
+  overflow-y: auto;
+
+  .cityDes {
+    font-size: 0.5rem;
+    padding: 0.5rem;
+  }
+
+  .cityItem {
+    font-size: 0.6rem;
+    background: #fff;
+    border-bottom: 1px solid #eee;
+    padding: 0.5rem;
+  }
 }
+
 
 .searchInput {
-  border-radius: 10px;
   border: 1px solid #ccc;
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 0.3rem 0;
-  text-align: center;
-  margin-top: 0.3rem;
+  padding: 0.3rem 0 0.3rem 0.3rem;
+  width: calc(100% - 1.5rem);
+  height: 1rem;
+  margin: 0.5rem;
+}
+
+.cityContent {
+  height: calc(100vh - 2.1rem) ;
+}
+
+.cityFirstWord{
+  position: fixed;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #000;
+  opacity: 0.2;
+  color: #fff;
+  display: flex;
+  align-items: center;
 }
