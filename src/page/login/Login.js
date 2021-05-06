@@ -10,8 +10,7 @@ const tabs = ['登录', '注册'];
 
 const Login = (props) => {
   const [activityIndex, setActivityIndex] = useState(0);
-  const [form1] = useForm();
-
+  const [{ userName, userPassWord }, setUserLoginMessage] = useState({});
   const goBack = () => {
     const { history } = props;
     history.go(-1);
@@ -21,7 +20,12 @@ const Login = (props) => {
     setActivityIndex(index);
   };
 
-  const handelLogin = () => {};
+  const inputChange = (e, type) => {
+    const newValue = e.target.value
+    setUserLoginMessage({ [type]: newValue })
+  }
+
+  const handelLogin = () => { };
 
   const renderStatusBar = () => {
     return (
@@ -51,12 +55,29 @@ const Login = (props) => {
         </div>
         {!activityIndex ? (
           <div className={styles.formStyle}>
-            <Input placeholder='用户名（6-20）个字符' />
-            <Input type='password' placeholder='密码(6-20位)' />
-            <Button>登录</Button>
+            <Input
+              placeholder='用户名'
+              value={userName}
+              onChange={(e) => inputChange(e, 'userName')} />
+            {userName === '' ? <div className={styles.errMes}>用户名不能为空</div> : null}
+            <Input
+              type='password'
+              placeholder='密码'
+              value={userPassWord}
+              onChange={(e) => inputChange(e, 'userPassWord')}
+            />
+            <div className={styles.errMes}>密码不能为空</div>
+            <Button className={styles.loginBtn} onClick={handelLogin}>登录</Button>
           </div>
         ) : (
-          <div>111</div>
+          <div className={styles.formStyle}>
+            <Input placeholder='用户名（6-20）个字符' />
+            <div className={styles.errMes}>用户名不能为空</div>
+            <Input type='password' placeholder='密码(6-20位)' />
+            <div className={styles.errMes}>密码不能为空</div>
+            <Input type='password' placeholder='再次输入密码' />
+            <Button className={styles.loginBtn} onClick={handleRegister}>注册</Button>
+          </div>
         )}
       </div>
     </div>
