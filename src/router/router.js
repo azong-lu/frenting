@@ -2,6 +2,7 @@ import HomePage from '@/page/home-page/HomePage';
 import ChooseCity from "@/page/choose-city/choosecity"
 import My from "@/page/my/My"
 import Login from "@/page/login/Login"
+import SearchPage from '@/page/search-page/SearchPage'
 
 const router = [
   {
@@ -23,6 +24,11 @@ const router = [
     path: '/login',
     component: Login,
     key: 'Login'
+  },
+  {
+    path:'/search',
+    component:SearchPage,
+    key:'SearchPage'
   }
 ];
 

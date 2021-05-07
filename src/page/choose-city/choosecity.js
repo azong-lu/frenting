@@ -26,11 +26,6 @@ const ChooseCity = (props) => {
     setNewList(cityData);
     setNameList(nameList);
   }, []);
-  useEffect(() => {
-    const key = 'f09c9da07eeed2b4c43f598e8f00d162';
-    // acquireDistrict({ key }).then((res) => {
-    // });
-  }, []);
 
   const handleBack = () => {
     const { history } = props;

@@ -10,7 +10,16 @@ const tabs = ['登录', '注册'];
 
 const Login = (props) => {
   const [activityIndex, setActivityIndex] = useState(0);
-  const [{ userName, userPassWord }, setUserLoginMessage] = useState({});
+  const [userLoginMessage, setUserLoginMessage] = useState({
+    userName: undefined,
+    userPassWord: undefined,
+  });
+  const [userRegisterInfo, setRegisterInfo] = useState({
+    userNameRegister: undefined,
+    userNamePawAgain: undefined,
+    userNamePaw: undefined,
+  });
+
   const goBack = () => {
     const { history } = props;
     history.go(-1);
@@ -21,11 +30,20 @@ const Login = (props) => {
   };
 
   const inputChange = (e, type) => {
-    const newValue = e.target.value
-    setUserLoginMessage({ [type]: newValue })
-  }
+    const newValue = e.target.value;
+    const newUserInfo = userLoginMessage;
+    setUserLoginMessage({ ...newUserInfo, [type]: newValue });
+  };
 
-  const handelLogin = () => { };
+  const registerInputChange = (e, type) => {
+    const newValue = e.target.value;
+    const newRegisterInfo = userRegisterInfo;
+    setRegisterInfo({ ...newRegisterInfo, [type]: newValue });
+  };
+
+  const handelLogin = () => {};
+
+  const handleRegister = () => {};
 
   const renderStatusBar = () => {
     return (
@@ -34,7 +52,9 @@ const Login = (props) => {
       </StatusBar>
     );
   };
-
+  const { userPassWord, userName } = userLoginMessage;
+  const { userNameRegister, userNamePaw, userNamePawAgain } = userRegisterInfo;
+  console.log(userRegisterInfo);
   return (
     <div className={styles.loginPage}>
       <div className={styles.loginBar}>{renderStatusBar()}</div>
@@ -58,25 +78,55 @@ const Login = (props) => {
             <Input
               placeholder='用户名'
               value={userName}
-              onChange={(e) => inputChange(e, 'userName')} />
-            {userName === '' ? <div className={styles.errMes}>用户名不能为空</div> : null}
+              onChange={(e) => inputChange(e, 'userName')}
+            />
+            {userName === '' ? (
+              <div className={styles.errMes}>用户名不能为空</div>
+            ) : null}
             <Input
               type='password'
               placeholder='密码'
               value={userPassWord}
               onChange={(e) => inputChange(e, 'userPassWord')}
             />
-            <div className={styles.errMes}>密码不能为空</div>
-            <Button className={styles.loginBtn} onClick={handelLogin}>登录</Button>
+            {userPassWord === '' ? (
+              <div className={styles.errMes}>密码不能为空</div>
+            ) : null}
+            <Button className={styles.loginBtn} onClick={handelLogin}>
+              登录
+            </Button>
           </div>
         ) : (
           <div className={styles.formStyle}>
-            <Input placeholder='用户名（6-20）个字符' />
-            <div className={styles.errMes}>用户名不能为空</div>
-            <Input type='password' placeholder='密码(6-20位)' />
-            <div className={styles.errMes}>密码不能为空</div>
-            <Input type='password' placeholder='再次输入密码' />
-            <Button className={styles.loginBtn} onClick={handleRegister}>注册</Button>
+            <Input
+              placeholder='用户名（6-20）个字符'
+              value={userNameRegister}
+              onChange={(e) => registerInputChange(e, 'userNameRegister')}
+            />
+            {userNameRegister === '' ? (
+              <div className={styles.errMes}>用户名不能为空</div>
+            ) : null}
+            <Input
+              type='password'
+              placeholder='密码(6-20位)'
+              value={userNamePaw}
+              onChange={(e) => registerInputChange(e, 'userNamePaw')}
+            />
+            {userNamePaw === '' ? (
+              <div className={styles.errMes}>密码不能为空</div>
+            ) : null}
+            <Input
+              type='password'
+              placeholder='再次输入密码'
+              value={userNamePawAgain}
+              onChange={(e) => registerInputChange(e, 'userNamePawAgain')}
+            />
+            {userNamePawAgain&&userNamePawAgain !== userNamePaw ? (
+              <div className={styles.errMes}>两次输入密码不一致</div>
+            ) : null}
+            <Button className={styles.loginBtn} onClick={handleRegister}>
+              注册
+            </Button>
           </div>
         )}
       </div>

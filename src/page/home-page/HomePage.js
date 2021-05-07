@@ -4,7 +4,6 @@ import GetLocation from 'components/get-location/index';
 import StatusBar from 'components/status-bar/index';
 import ProductComponent from 'components/productcomponent';
 import uid from 'utils/Uid';
-
 import banner1 from 'asserts/banner.png';
 import jointrent from 'asserts/jointrent.png';
 import brandapartment from 'asserts/brandapartment.png';
@@ -85,6 +84,11 @@ const HomePage = (props) => {
     history.push('/my')
   }
 
+  const toSearch=()=>{
+    const {history}=props;
+    history.push('/search')
+  }
+
   const handleClick = (index, key) => {
     console.log(productRef);
     productRef.current.resetScroll();
@@ -145,7 +149,7 @@ const HomePage = (props) => {
       <div>{renderStatusBar()}</div>
       <div className={styles.bannerTotal}>
         <img src={banner1} className={styles.bannerItem} alt='banner' />
-        <div className={styles.bannerInput}>
+        <div className={styles.bannerInput} onClick={toSearch}>
           <SearchOutlined />
           输入区域，搜索房源
         </div>
