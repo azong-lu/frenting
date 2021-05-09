@@ -2,6 +2,7 @@ const globalStore = () => {
   return {
     currentLocal: '全国',
     historyView: [],
+    userInfo:{},
     // action
     newLocation(location) {
       this.currentLocal = location;

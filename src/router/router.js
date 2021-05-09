@@ -3,6 +3,7 @@ import ChooseCity from "@/page/choose-city/choosecity"
 import My from "@/page/my/My"
 import Login from "@/page/login/Login"
 import SearchPage from '@/page/search-page/SearchPage'
+import ProductList from '@/page/product-list/ProductList'
 
 const router = [
   {
@@ -29,6 +30,11 @@ const router = [
     path:'/search',
     component:SearchPage,
     key:'SearchPage'
+  },
+  {
+    path:'/list/:keyWord',
+    component:ProductList,
+    key:'ProductList'
   }
 ];
 

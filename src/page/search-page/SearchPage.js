@@ -25,8 +25,9 @@ const SearchPage = (props) => {
 
   const handleBlur = (e) => {
     const { value } = e.target;
-
+    const { history } = props
     historyChange(value);
+    history.push(`/list/${value}`)
   };
   const renderStatusBar = () => {
     return (

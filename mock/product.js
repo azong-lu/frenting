@@ -2,7 +2,7 @@
 
 const List = [
   {
-    id:Math.ceil(Math.random()*100),
+    id: Math.ceil(Math.random() * 100),
     area_direction: '18M² | 朝南',
     floor: '4/6',
     house_src_type: 'straightRent',
@@ -26,7 +26,7 @@ const List = [
     subdistrict_name: '当代高邸（聚丰园路95弄）',
   },
   {
-    id: Math.ceil(Math.random()*100),
+    id: Math.ceil(Math.random() * 100),
     area_direction: '19M² | 朝东南',
     floor: '4/6',
     house_src_type: 'professionBroker',
@@ -50,7 +50,7 @@ const List = [
     subdistrict_name: '美罗家园罗安苑',
   },
   {
-    id: Math.ceil(Math.random()*100),
+    id: Math.ceil(Math.random() * 100),
     area_direction: '20M² | 朝西南',
     floor: '4/6',
     house_src_type: 'convenienceAgent',
@@ -95,6 +95,50 @@ const proxy = {
       modelList: newList,
     },
   },
+  'GET /rentamt/list': {
+    data: {
+      modelList: [
+        '不限',
+        '1500元以下',
+        '1500-2000元',
+        '2000-3000元',
+        '3000-4000元',
+        '5000元以上'
+      ]
+    }
+  },
+  'GET /product/view': {
+    data: {
+      house_labels: ["近地铁", "独卫", "保洁服务", "新上架", "非一楼"],
+      agency_house_photo_info: [
+        {
+          src: "https://cdn.baletoo.cn/Uploads/housephoto/1685/1684407/cos_3b4496472107481c.jpeg@!blth",
+          type: "卧室(1)"
+        },
+        {
+          src: "https://cdn.baletoo.cn/Uploads/housephoto/1685/1684407/cos_ee7122b7617d4605.jpeg@!blth",
+          type: "卧室(2)"
+        },
+        {
+          src: "https://cdn.baletoo.cn/Uploads/housephoto/1685/1684407/cos_c9ba6dfb36604ccc.jpeg@!blth",
+          type: "卧室(3)"
+        },
+        {
+          src: "https://cdn.baletoo.cn/Uploads/housephoto/1685/1684407/cos_f47f63269fbb4a95.jpeg@!blth",
+          type: "卧室(4)"
+        }
+      ],
+      base_info: {
+        anytime_see: "",
+        direction: "朝东北",
+        floor: "10/11层",
+        floor_area: "75M²",
+        house_status: 1,
+        house_type: "2室1厅1卫",
+      }
+
+    }
+  }
 };
 
 module.exports = proxy;

@@ -1,0 +1,64 @@
+.searchInput {
+    padding: 0.2rem;
+    border: none;
+    border-radius: 0.2rem;
+}
+
+.filterBar {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    font-size: 0.7rem;
+    line-height: 1.7rem;
+
+    span {
+        display: inline-block;
+        width: 25%;
+        text-align: center;
+        color: #323232;
+    }
+
+    .active {
+        color: red !important;
+    }
+}
+
+.locationContent {
+    position: absolute;
+    background: #fafafa;
+    width: 100%;
+    display: flex;
+    font-size: 0.8rem;
+    line-height: 1.7rem;
+
+    .districtContent {
+        width: 40%;
+        padding-top: 0.5rem;
+        padding-left: 0.5rem;
+        height: 11rem;
+        overflow-y: auto;
+
+     
+    }
+
+    .streetContent {
+        background: #fff;
+        height: 11rem;
+        overflow-y: auto;
+        width: 60%;
+        background: #fff;
+        padding: 0.5rem;
+    }
+}
+.districtActive {
+    color: red;
+    background: #fff;
+}
+
+
+
+
+.productContent {
+    height: calc(100vh - 4.5rem);
+    margin-top: 0.5rem;
+}

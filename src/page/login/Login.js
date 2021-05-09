@@ -41,9 +41,13 @@ const Login = (props) => {
     setRegisterInfo({ ...newRegisterInfo, [type]: newValue });
   };
 
-  const handelLogin = () => {};
+  const handelLogin = () => {
 
-  const handleRegister = () => {};
+  };
+
+  const handleRegister = () => {
+    
+  };
 
   const renderStatusBar = () => {
     return (
@@ -54,7 +58,6 @@ const Login = (props) => {
   };
   const { userPassWord, userName } = userLoginMessage;
   const { userNameRegister, userNamePaw, userNamePawAgain } = userRegisterInfo;
-  console.log(userRegisterInfo);
   return (
     <div className={styles.loginPage}>
       <div className={styles.loginBar}>{renderStatusBar()}</div>
