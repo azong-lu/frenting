@@ -4,6 +4,8 @@ import My from "@/page/my/My"
 import Login from "@/page/login/Login"
 import SearchPage from '@/page/search-page/SearchPage'
 import ProductList from '@/page/product-list/ProductList'
+import ProductView from '@/page/product-view/ProductView'
+
 
 const router = [
   {
@@ -35,6 +37,11 @@ const router = [
     path:'/list/:keyWord',
     component:ProductList,
     key:'ProductList'
+  },
+  {
+    path:'/view',
+    component:ProductView,
+    key:'ProductView'
   }
 ];
 

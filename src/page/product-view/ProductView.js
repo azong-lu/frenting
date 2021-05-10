@@ -7,7 +7,7 @@ import Swiper from 'swiper';
 import styles from './ProductView.less'
 import 'swiper/swiper-bundle.css';
 
-const ProductView = () => {
+const ProductView = (props) => {
     const [productView, setProductView] = useState([]);
     useEffect(() => {
         findProduct().then(res => {
@@ -18,22 +18,31 @@ const ProductView = () => {
         const mySwiper = new Swiper('.swiper-container', {
             loop: true,
         })
-    })
+    }, [])
+    const goBack = () => {
+        const { history } = props;
+        history.go(-1);
+    }
+
     const renderStatusBar = () => (
         <StatusBar>
             <LeftOutlined className={styles.barIcon} onClick={goBack} />
         </StatusBar>
     )
 
-    const renderSwiper = () => (
-        <div class="swiper-container">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide">Slide 1</div>
-                <div class="swiper-slide">Slide 2</div>
-                <div class="swiper-slide">Slide 3</div>
+    const renderSwiper = () => {
+        const { agency_house_photo_info = [] } = productView
+        return (<div className="swiper-container">
+            <div className="swiper-wrapper">
+                {agency_house_photo_info.map(item => {
+                    const { src } = item;
+                    return (<div className="swiper-slide">
+                        <img src={src} />
+                    </div>)
+                })}
             </div>
-        </div>
-    )
+        </div>)
+    }
 
     return <div>
         {renderStatusBar()}

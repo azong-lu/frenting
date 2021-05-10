@@ -90,7 +90,6 @@ const HomePage = (props) => {
   }
 
   const handleClick = (index, key) => {
-    console.log(productRef);
     productRef.current.resetScroll();
     setActivityIndex(index);
     if (key !== 'guessLike') {
@@ -157,7 +156,7 @@ const HomePage = (props) => {
       {renderRentType()}
       {renderHouseList()}
       <div className={styles.products}>
-        <ProductComponent products={products} ref={productRef} />
+        <ProductComponent products={products} ref={productRef} {...props}/>
       </div>
     </div>
   );

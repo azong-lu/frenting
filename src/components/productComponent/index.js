@@ -15,6 +15,12 @@ const ProductComponent = (props, ref) => {
     productRef.current.scrollTop = 0;
   };
 
+  const handleClick=()=>{
+    const {history}=props;
+    console.log(props);
+    history.push('/view')
+  }
+
   // const handleScroll = () => {
   //   console.log(productRef.current.scrollTop);
   // };
@@ -23,7 +29,7 @@ const ProductComponent = (props, ref) => {
     <div
       className={styles.productTotal}
       ref={productRef}
-      // onScroll={handleScroll}
+    // onScroll={handleScroll}
     >
       <div className={styles.productContent}>
         {products.map((productItem) => {
@@ -37,7 +43,7 @@ const ProductComponent = (props, ref) => {
             month_rent,
           } = productItem;
           return (
-            <div key={uid} className={styles.productItem}>
+            <div key={uid} className={styles.productItem} onClick={handleClick}>
               <img
                 src={house_main_image}
                 alt='mainImage'
