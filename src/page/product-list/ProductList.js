@@ -168,7 +168,7 @@ const ProductList = (props) => {
       {renderFilterBar()}
     </div>
     <div className={styles.productContent}>
-      <ProductComponent products={products} ref={productRef} />
+      <ProductComponent products={products} ref={productRef} {...props} />
     </div>
   </div>
 };

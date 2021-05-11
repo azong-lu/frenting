@@ -1,6 +1,6 @@
 .productViewPage {
   font-size: 0.7rem;
-
+  padding-bottom: 2.5rem;
   .barIcon {
     position: absolute;
     z-index: 9;
@@ -81,20 +81,53 @@
       box-sizing: border-box;
       margin-right: 1.5rem;
     }
-    .infoContentDes{
+
+    .infoContentDes {
       flex: 3;
-      >div{
+
+      >div {
         margin-bottom: 0.3rem;
       }
-      .infoHistory{
+
+      .infoHistory {
         font-size: 0.5rem;
         color: #aaa;
       }
-      .infoTel{
+
+      .infoTel {
         margin-bottom: 0;
         font-size: 0.6rem;
       }
     }
   }
 
+  .address {
+    background: #fff;
+    padding: 0.5rem;
+    font-weight: bold;
+    
+  }
+  .collectBar{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #fff;
+    padding: 0.5rem;
+    height: 2.5rem;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 999;
+  }
+  .lookHouse{
+    width:6rem;
+    float: right;
+    background: @primary-color;
+    color: #fff;
+    font-size: 0.8rem;
+    text-align: center;
+    padding: 0.5rem;
+  }
 }

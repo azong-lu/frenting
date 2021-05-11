@@ -2,7 +2,7 @@ import { get } from 'utils/request';
 
 export async function useAmap(params = {}) {
   // console.log(params);
-  return await get('https://restapi.amap.com/v3/geocode/regeo', {
+  return await get('https://restapi.amap.com/v3/staticmap', {
     params,
     mode: 'cors',
   });
@@ -19,6 +19,14 @@ export async function acquireDistrict(params = {}) {
   export async function acquireIp(params = {}) {
     // console.log(params);
     return await get('https://restapi.amap.com/v3/ip', {
+      params,
+      mode: 'cors',
+    });
+  }
+
+  export async function transformAddres(params = {}) {
+    // console.log(params);
+    return await get('https://restapi.amap.com/v3/geocode/geo', {
       params,
       mode: 'cors',
     });
