@@ -51,7 +51,6 @@ const ChooseCity = (props) => {
       newArr.push(item)
     })
   
-    console.log(newArr);
     setNewList(newArr);
   };
 

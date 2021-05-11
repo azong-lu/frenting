@@ -1,3 +1,100 @@
-.barIcon {
-    text-align: left;
+.productViewPage {
+  font-size: 0.7rem;
+
+  .barIcon {
+    position: absolute;
+    z-index: 9;
+    background: #323232;
+    opacity: 0.5;
+    padding: 0.5rem;
+    color: #fff;
   }
+
+  .swiperItem {
+    width: 100%;
+    height: auto;
+  }
+
+  .houseContent {
+    background: #fff;
+    padding: 0.5rem 1rem;
+    font-size: 0.7rem;
+
+    >div {
+      margin: 0.4rem 0;
+    }
+
+    .houseContentTitle {
+      color: #323232;
+      font-weight: bold;
+      font-size: 0.8rem;
+    }
+
+    .houseContentLabel {
+      width: 100%;
+      overflow-y: auto;
+
+      span {
+        padding: 0.2rem;
+        background: #eee;
+        border-radius: 0.1rem;
+        font-size: 0.5rem;
+        margin-right: 0.1rem;
+      }
+    }
+
+    .houseContentMoney {
+      color: red;
+    }
+
+    .houseContentDes {
+      background: #eee;
+      border-radius: 0.2rem;
+      display: flex;
+      width: 100%;
+      padding: 0.5rem 0;
+
+      >div {
+        width: 33.3%;
+        text-align: center;
+      }
+    }
+  }
+
+  .publicInfoContent {
+    background: #fff;
+    margin: 0.5rem 0;
+    display: flex;
+    font-size: 0.7rem;
+    padding: 0.8rem;
+    align-items: center;
+
+    .infoCotentIcon {
+      width: 2.5rem;
+      text-align: center;
+      height: 2.5rem;
+      border-radius: 50%;
+      font-size: 1.2rem;
+      line-height: 2.2rem;
+      background: #eee;
+      border: 2px solid #fff;
+      box-sizing: border-box;
+      margin-right: 1.5rem;
+    }
+    .infoContentDes{
+      flex: 3;
+      >div{
+        margin-bottom: 0.3rem;
+      }
+      .infoHistory{
+        font-size: 0.5rem;
+        color: #aaa;
+      }
+      .infoTel{
+        margin-bottom: 0;
+        font-size: 0.6rem;
+      }
+    }
+  }
+
+}

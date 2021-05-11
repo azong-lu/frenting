@@ -37,6 +37,7 @@ const ProductList = (props) => {
       setProductList(modelList);
       setProducts(modelList);
     });
+    // 通过城市名称请求当前城市的下级行政区
     acquireDistrict({ keywords: currentLocal, key, subdistrict: 3 }).then(res => {
       const { districts = [] } = res
       const { districts: cityDistricts = [], level } = districts[0] || {}

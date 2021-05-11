@@ -135,8 +135,18 @@ const proxy = {
         floor_area: "75M²",
         house_status: 1,
         house_type: "2室1厅1卫",
+  
+      },
+      house_money: 1688,
+      house_title: "整租 金葫芦新村二区 朝西北1楼",
+      subdistrict_address: "民实路99弄96-166号",
+      public:{
+        name:'冯安新',
+        score:4.8,
+        tel:'4008580540转73103',
+        area:' 浦东 曹路',
+        history:'最近30天带看房10套'
       }
-
     }
   }
 };
