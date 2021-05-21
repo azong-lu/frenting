@@ -1,15 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import StatusBar from 'components/status-bar/index';
-import { LeftOutlined } from '@ant-design/icons';
-import { useForm } from 'antd/lib/form/Form';
+import { useStore } from 'store/store';
+import { observer } from 'mobx-react-lite';
+import { LeftOutlined, LoginOutlined } from '@ant-design/icons';
 import styles from './Login.less';
-import { Input, Form, Button } from 'antd';
+import { Input, Button, message } from 'antd';
 import LoginPic from 'asserts/login.png';
+
 
 const tabs = ['登录', '注册'];
 
 const Login = (props) => {
+  const { changeLoginMessage, changeUserInfo, userInfo } = useStore();
   const [activityIndex, setActivityIndex] = useState(0);
+  const [flag, setFlag] = useState(false);
   const [userLoginMessage, setUserLoginMessage] = useState({
     userName: undefined,
     userPassWord: undefined,
@@ -20,6 +24,16 @@ const Login = (props) => {
     userNamePaw: undefined,
   });
 
+  useEffect(() => {
+
+    return () => {
+      setUserLoginMessage({})
+      setRegisterInfo({})
+    }
+  }, []);
+
+
+
   const goBack = () => {
     const { history } = props;
     history.go(-1);
@@ -27,6 +41,9 @@ const Login = (props) => {
 
   const handleChange = (index) => {
     setActivityIndex(index);
+    setRegisterInfo({})
+    setUserLoginMessage({})
+    setFlag(false)
   };
 
   const inputChange = (e, type) => {
@@ -42,11 +59,31 @@ const Login = (props) => {
   };
 
   const handelLogin = () => {
-
+    const { userName, userPassWord } = userLoginMessage
+    const { userNameRegister, userNamePaw } = userInfo
+    if (userName) {
+      setFlag(true)
+      if (userName === userNameRegister && userPassWord === userNamePaw) {
+        setFlag(false)
+      }
+      if(!userName||!userPassWord||!flag){
+        return
+      }
+      changeLoginMessage(userLoginMessage)
+    }
+    const { history } = props;
+    history.go(-1)
   };
 
   const handleRegister = () => {
-    
+    if (!userLoginMessage) {
+      return
+    } else {
+      changeUserInfo(userRegisterInfo)
+      setActivityIndex(0)
+      setRegisterInfo({})
+    }
+
   };
 
   const renderStatusBar = () => {
@@ -95,6 +132,7 @@ const Login = (props) => {
             {userPassWord === '' ? (
               <div className={styles.errMes}>密码不能为空</div>
             ) : null}
+            {flag ? <div className={styles.errMes}>用户名或密码不正确</div> : null}
             <Button className={styles.loginBtn} onClick={handelLogin}>
               登录
             </Button>
@@ -124,7 +162,7 @@ const Login = (props) => {
               value={userNamePawAgain}
               onChange={(e) => registerInputChange(e, 'userNamePawAgain')}
             />
-            {userNamePawAgain&&userNamePawAgain !== userNamePaw ? (
+            {userNamePawAgain && userNamePawAgain !== userNamePaw ? (
               <div className={styles.errMes}>两次输入密码不一致</div>
             ) : null}
             <Button className={styles.loginBtn} onClick={handleRegister}>
@@ -137,4 +175,4 @@ const Login = (props) => {
   );
 };
 
-export default Login;
+export default observer(Login);

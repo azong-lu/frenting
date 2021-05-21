@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import StatusBar from 'components/status-bar/index';
-import { HeartOutlined, LeftOutlined, RedditOutlined } from '@ant-design/icons';
+import { HeartOutlined, HeartTwoTone, LeftOutlined, RedditOutlined } from '@ant-design/icons';
 import { findProduct } from 'services/productview';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { useAmap, transformAddres } from 'services/AmapAPI'
@@ -141,6 +141,7 @@ const ProductView = (props) => {
             {renderLocation()}
             <div className={styles.collectBar}>
                 <div>
+                    {/* {hasCollect ? <HeartTwoTone twoToneColor='red' /> : <HeartOutlined />} */}
                     <HeartOutlined />
                 </div>
                 <div className={styles.lookHouse}>我要看房</div>

@@ -16,7 +16,7 @@ module.exports = {
       utils: path.join(__dirname, '../src/utils'),
       services: path.join(__dirname, '../src/services'),
       asserts: path.join(__dirname, '../src/asserts'),
-      store:path.join(__dirname, '../src/store')
+      store: path.join(__dirname, '../src/store')
     },
     extensions: ['.js', '.jsx'],
   },
@@ -35,6 +35,13 @@ module.exports = {
             plugins: [
               '@babel/plugin-transform-runtime',
               '@babel/plugin-transform-react-jsx',
+              // [
+              //   "import", {
+              //     "libraryName": "antd",
+              //     "libraryDirectory": "es",
+              //     "style": "css"
+              //   }]
+
             ],
           },
         },

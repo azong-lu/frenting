@@ -7,8 +7,9 @@ import { acquireDistrict } from 'services/AmapAPI'
 import { fetchRentAmt } from 'services/productlist'
 import { observer } from 'mobx-react-lite';
 import { useStore } from 'store/store';
-import { DownOutlined, HomeOutlined, UpOutlined, UserOutlined } from '@ant-design/icons';
+import { DownOutlined, FrownOutlined, HomeOutlined, LockFilled, UpOutlined, UserOutlined } from '@ant-design/icons';
 import { Input } from 'antd';
+import classNames from 'classnames'
 import uid from 'utils/Uid';
 
 import styles from './ProductList.less'
@@ -25,7 +26,9 @@ const ProductList = (props) => {
   const [activeTown, setActiveTown] = useState(undefined);
   const [towm, setTown] = useState([]);
   const [rentAmtList, setRentAmtList] = useState([]);
+  const [activityAmt, setActivityAmt] = useState('');
   const productRef = useRef(null)
+  const { match: { params: { keyWord } = {} } = {} } = props
 
   useEffect(() => {
     const key = 'f09c9da07eeed2b4c43f598e8f00d162';
@@ -34,8 +37,15 @@ const ProductList = (props) => {
       modelList.forEach((item) => {
         item.uid = uid();
       });
+      let data = []
+      if (keyWord) {
+        data = modelList.filter(item => item.house_title.indexOf(keyWord) > -1)
+      }
       setProductList(modelList);
-      setProducts(modelList);
+
+      setProducts(data)
+
+
     });
     // 通过城市名称请求当前城市的下级行政区
     acquireDistrict({ keywords: currentLocal, key, subdistrict: 3 }).then(res => {
@@ -52,6 +62,7 @@ const ProductList = (props) => {
       const { data: { modelList } = {} } = res
       setRentAmtList(modelList)
     })
+
   }, []);
 
   const handleClick = (key) => {
@@ -71,7 +82,7 @@ const ProductList = (props) => {
 
   const filterType = {
     location: { key: 'location', label: '位置', activeLabel: activeTown },
-    rentAmt: { key: 'rentAmt', label: '租金' },
+    rentAmt: { key: 'rentAmt', label: '租金', activeLabel: activityAmt },
     houseType: { key: 'houseType', label: '户型' },
     more: { key: 'more', label: '更多' }
   }
@@ -86,7 +97,7 @@ const ProductList = (props) => {
             className={
               activityKey === key ? styles.active : null
             }>
-            {activeLabel || label}
+            <div className={styles.activeLabel}>{activeLabel || label}</div>
             <DownOutlined />
           </span>
         })}
@@ -122,11 +133,22 @@ const ProductList = (props) => {
     </div>
   )
 
-  const renderRentAmt = () => (
-    <div>
-
+  const renderRentAmt = () => {
+    const handleAmtClick = (item) => {
+      setActivityAmt(item)
+      setIsExtend(!isExtend)
+    }
+    return <div className={styles.rentAmtContent}>
+      {rentAmtList.map((item) =>
+        <span
+          key={item}
+          className={classNames(styles.rentAmtItem, activityAmt === item ? styles.active : null)}
+          onClick={() => handleAmtClick(item)}
+        >{item}</span>)}
     </div>
-  )
+  }
+
+  const renderHouseType = () => { }
 
   const renderActiveBar = () => {
     return <Fragment>
@@ -135,14 +157,18 @@ const ProductList = (props) => {
           const { label, key, activeLabel } = item
           return <span
             key={key}
-            onClick={() => handleClick(key)} className={
+            onClick={() => handleClick(key)}
+            className={
               activityKey === key ? styles.active : null
-            }>{activeLabel || label}<UpOutlined /></span>
+            }>
+            <div className={styles.activeLabel}>{activeLabel || label}</div><UpOutlined /></span>
         })}
       </div>
       <div className={styles.locationContent}>
         {activityKey === 'location' ? renderDistrict() : null}
         {activityKey === 'rentAmt' ? renderRentAmt() : null}
+        {activityKey === 'houseType' ? renderHouseType() : null}
+        {activityKey === 'more' ? renderMore() : null}
       </div>
     </Fragment>
   }
@@ -152,12 +178,31 @@ const ProductList = (props) => {
   }
 
   const renderStatusBar = () => {
+    const { history } = props;
+    const toHome = () => {
+      history.push('/')
+    }
+
+    const toSelect = () => {
+      history.push('/choosecity')
+    }
+
+    const toSearch = () => {
+      history.push('/search')
+    }
+
+    const toMy = () => {
+      history.push('/my')
+    }
+
     return (
       <StatusBar>
-        <HomeOutlined />
-        <GetLocation />
-        <Input placeholder='输入区域搜索房源' className={styles.searchInput} />
-        <UserOutlined />
+        <HomeOutlined onClick={toHome} />
+        <div onClick={toSelect}>
+          <GetLocation />
+        </div>
+        <div className={styles.searchInput} onClick={toSearch}>{keyWord ? keyWord : '请输入商圈、小区'}</div>
+        <UserOutlined onClick={toMy} />
       </StatusBar>
     );
   };
@@ -168,7 +213,10 @@ const ProductList = (props) => {
       {renderFilterBar()}
     </div>
     <div className={styles.productContent}>
-      <ProductComponent products={products} ref={productRef} {...props} />
+      {products.length ?
+        <ProductComponent products={products} ref={productRef} {...props} /> :
+        <div className={styles.productNon}><FrownOutlined style={{ marginRight: '0.5rem' }} />暂无数据</div>
+      }
     </div>
   </div>
 };

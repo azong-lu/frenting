@@ -39,6 +39,11 @@ const router = [
     key:'ProductList'
   },
   {
+    path:'/list',
+    component:ProductList,
+    key:'ProductLists'
+  },
+  {
     path:'/view',
     component:ProductView,
     key:'ProductView'

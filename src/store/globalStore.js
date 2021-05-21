@@ -2,7 +2,8 @@ const globalStore = () => {
   return {
     currentLocal: '全国',
     historyView: [],
-    userInfo:{},
+    userInfo: {},
+    userLoginMessages: {},
     // action
     newLocation(location) {
       this.currentLocal = location;
@@ -13,6 +14,14 @@ const globalStore = () => {
     removeHistory() {
       this.historyView = [];
     },
+    changeLoginMessage(loginMessage) {
+      this.userLoginMessages = loginMessage
+    },
+
+    changeUserInfo(loginMessage) {
+      this.userInfo = loginMessage
+    },
+
   };
 };
 

@@ -1,7 +1,12 @@
 .searchInput {
     padding: 0.2rem;
-    border: none;
+    border: 1px solid #fff;
     border-radius: 0.2rem;
+    font-size: 0.7rem;
+    background: #fff;
+    color: #666;
+    margin: 0 0.5rem;
+    flex: 1;
 }
 
 .filterBar {
@@ -10,16 +15,27 @@
     background: #fff;
     font-size: 0.7rem;
     line-height: 1.7rem;
+    padding: 0.2rem 0;
 
     span {
-        display: inline-block;
-        width: 25%;
+        // display: inline-block;
+        display: flex;
+        align-items: center;
+        margin: 0 0.5rem;
+        width: 20%;
         text-align: center;
         color: #323232;
     }
 
     .active {
         color: red !important;
+    }
+
+    .activeLabel {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        width: 2.5rem;
+        white-space: nowrap;
     }
 }
 
@@ -28,7 +44,7 @@
     background: #fafafa;
     width: 100%;
     display: flex;
-    font-size: 0.8rem;
+    font-size: 0.65rem;
     line-height: 1.7rem;
 
     .districtContent {
@@ -38,7 +54,7 @@
         height: 11rem;
         overflow-y: auto;
 
-     
+
     }
 
     .streetContent {
@@ -50,6 +66,7 @@
         padding: 0.5rem;
     }
 }
+
 .districtActive {
     color: red;
     background: #fff;
@@ -59,6 +76,29 @@
 
 
 .productContent {
-    height: calc(100vh - 4.5rem);
+    height: calc(100vh - 5rem);
     margin-top: 0.5rem;
+    .productNon{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+    }
+}
+
+.rentAmtContent {
+    width: 100%;
+
+    .rentAmtItem {
+        width: 33.33%;
+        display: block;
+        text-align: center;
+        float: left;
+        border-radius: 0.4rem;
+    }
+
+    .active {
+        background-color: #eff6fa;
+        color: #2f92ca;
+    }
 }
